@@ -1,0 +1,63 @@
+{
+  "name": "opencode-turn-stats",
+  "version": "1.0.0",
+  "description": "Current-turn processed-token count for the OpenCode sidebar",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sm18lr88/opencode-turn-stats.git"
+  },
+  "homepage": "https://github.com/sm18lr88/opencode-turn-stats#readme",
+  "bugs": {
+    "url": "https://github.com/sm18lr88/opencode-turn-stats/issues"
+  },
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "tui",
+    "token-usage"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "exports": {
+    "./tui": "./dist/tui.js"
+  },
+  "files": [
+    "dist/tui.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "opencode": ">=1.18.30 <2",
+    "bun": ">=1.3.9"
+  },
+  "scripts": {
+    "build": "bun run scripts/build.ts",
+    "typecheck": "tsc --noEmit",
+    "check": "biome check src scripts package.json tsconfig.json biome.json",
+    "test": "bun test scripts/*.test.ts",
+    "qa": "bun run --conditions=browser --preload @opentui/solid/preload scripts/qa.tsx",
+    "package:check": "bun run scripts/check-package.ts",
+    "verify": "bun run typecheck && bun run check && bun run test && bun run build && bun run qa && bun run package:check",
+    "prepack": "bun run verify"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.13",
+    "@opencode-ai/plugin": "1.18.30",
+    "@opencode-ai/sdk": "1.18.30",
+    "@opentui/core": "0.4.5",
+    "@opentui/solid": "0.4.5",
+    "@types/bun": "1.3.9",
+    "solid-js": "1.9.12",
+    "typescript": "5.9.3"
+  },
+  "peerDependencies": {
+    "@opencode-ai/plugin": ">=1.18.30 <2",
+    "@opentui/core": "0.4.5",
+    "@opentui/solid": "0.4.5",
+    "solid-js": "1.9.12"
+  }
+}
